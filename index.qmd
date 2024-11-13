@@ -1,0 +1,46 @@
+---
+title: "My first slides"
+subtitle: "Dataviz of Gapminder Dataset"
+author: "by Gür Piren"
+format: revealjs
+editor: visual
+execute: 
+  echo: true 
+---
+
+## Loading the data
+
+If we do not wish to display the dataset and all those libraries on our presentation, we can indicate in the beginning:
+
+```{r}
+#| echo: false
+library(dplyr)
+library(gapminder)
+gapminder
+```
+
+---
+
+## Preprocessing the data
+
+```{r}
+library(dplyr)
+gapminder_2007 <-
+  gapminder |> 
+  filter(year == 2007)
+```
+
+---
+
+Plot the data
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+ggplot(gapminder_2007) +
+  geom_point(aes(x = lifeExp, y = gdpPercap,
+                 color = continent)) +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
+--- 
